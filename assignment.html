@@ -25,10 +25,10 @@
 
         <h3>Code Snippet</h3>
         <pre><code>
-                #include<stdio.h>
-                #include<stdlib.h>
-                #include<string.h>
-                #include<ctype.h>
+            #include <stdio.h>
+                #include <stdlib.h>
+                #include <string.h>
+                #include <ctype.h>
                 
                 #define MAX 100
                 
@@ -48,7 +48,7 @@
                 void convertToPrefix(char* infix, char* prefix);
                 void reverse(char* exp);
                 
-                // Push and pop for character stack
+                // Stack operations
                 void pushChar(CharStack* s, char value) {
                     if (s->top < MAX - 1) {
                         s->items[++(s->top)] = value;
@@ -105,72 +105,69 @@
                         if (isspace(infix[i])) continue; // Ignore spaces
                 
                         if (isalnum(infix[i])) {
-                            postfix[j++] = infix[i]; // Add variable to output
-                            postfix[j++] = ' '; // Add space to separate variables
+                            postfix[j++] = infix[i];
+                            postfix[j++] = ' '; // Space to separate variables
                         } else if (infix[i] == '(') {
-                            pushChar(&operators, infix[i]); // Push '(' onto stack
+                            pushChar(&operators, infix[i]);
                         } else if (infix[i] == ')') {
                             while (!isEmptyChar(&operators) && peekChar(&operators) != '(') {
                                 postfix[j++] = popChar(&operators);
-                                postfix[j++] = ' '; // Add space to separate operators
+                                postfix[j++] = ' ';
                             }
                             popChar(&operators); // Remove '(' from stack
                         } else { // Operator
                             while (!isEmptyChar(&operators) && precedence(peekChar(&operators)) >= precedence(infix[i])) {
                                 postfix[j++] = popChar(&operators);
-                                postfix[j++] = ' '; // Add space to separate operators
+                                postfix[j++] = ' ';
                             }
-                            pushChar(&operators, infix[i]); // Push current operator onto stack
+                            pushChar(&operators, infix[i]);
                         }
                     }
                 
-                    // Pop all the operators from the stack
+                    // Pop all operators
                     while (!isEmptyChar(&operators)) {
                         postfix[j++] = popChar(&operators);
-                        postfix[j++] = ' '; // Add space to separate operators
+                        postfix[j++] = ' ';
                     }
-                    postfix[j] = '\0'; // Null-terminate the postfix expression
+                    postfix[j] = '\0';
                 }
                 
                 // Convert infix expression to prefix
                 void convertToPrefix(char* infix, char* prefix) {
-                    // Reverse the infix expression
                     reverse(infix);
                     CharStack operators;
                     operators.top = -1;
                     int j = 0;
                 
                     for (int i = 0; infix[i]; i++) {
-                        if (isspace(infix[i])) continue; // Ignore spaces
+                        if (isspace(infix[i])) continue;
                 
                         if (isalnum(infix[i])) {
-                            prefix[j++] = infix[i]; // Add variable to output
-                            prefix[j++] = ' '; // Add space to separate variables
+                            prefix[j++] = infix[i];
+                            prefix[j++] = ' ';
                         } else if (infix[i] == ')') {
-                            pushChar(&operators, infix[i]); // Push ')' onto stack
+                            pushChar(&operators, infix[i]);
                         } else if (infix[i] == '(') {
                             while (!isEmptyChar(&operators) && peekChar(&operators) != ')') {
                                 prefix[j++] = popChar(&operators);
-                                prefix[j++] = ' '; // Add space to separate operators
+                                prefix[j++] = ' ';
                             }
-                            popChar(&operators); // Remove ')' from stack
-                        } else { // Operator
+                            popChar(&operators);
+                        } else {
                             while (!isEmptyChar(&operators) && precedence(peekChar(&operators)) > precedence(infix[i])) {
                                 prefix[j++] = popChar(&operators);
-                                prefix[j++] = ' '; // Add space to separate operators
+                                prefix[j++] = ' ';
                             }
-                            pushChar(&operators, infix[i]); // Push current operator onto stack
+                            pushChar(&operators, infix[i]);
                         }
                     }
                 
-                    // Pop all the operators from the stack
+                    // Pop all operators
                     while (!isEmptyChar(&operators)) {
                         prefix[j++] = popChar(&operators);
-                        prefix[j++] = ' '; // Add space to separate operators
+                        prefix[j++] = ' ';
                     }
-                    prefix[j] = '\0'; // Null-terminate the prefix expression
-                
-                    // Reverse the prefix expression to get the correct order
+                    prefix[j] = '\0';
                     reverse(prefix);
                 }
                 
@@ -181,23 +178,23 @@
                     char prefix[MAX];
                     int choice;
                 
-                    // Input the expression
+                    // Input expression
                     printf("Enter an arithmetic expression (e.g., A + B): ");
                     fgets(expression, MAX, stdin);
-                    expression[strcspn(expression, "\n")] = 0; // Remove newline character
+                    expression[strcspn(expression, "\n")] = 0;
                 
                     // Convert to postfix and prefix
                     convertToPostfix(expression, postfix);
                     convertToPrefix(expression, prefix);
                 
-                    // Ask user for choice
+                    // User choice
                     printf("Choose output format:\n");
                     printf("1. Postfix\n");
                     printf("2. Prefix\n");
                     printf("Enter your choice (1 or 2): ");
                     scanf("%d", &choice);
                 
-                    // Output results based on user choice
+                    // Output results
                     if (choice == 1) {
                         printf("Postfix: %s\n", postfix);
                     } else if (choice == 2) {
@@ -210,6 +207,7 @@
                 }
                 
         </code></pre>
+
 
         <h3>Live Demo</h3>
         <a href="https://www.onlinegdb.com/" target="_blank">View Live Demo</a>
