@@ -207,6 +207,67 @@
                 }
                 
         </code></pre>
+
+        <h2>Code Explanation</h2>
+        <p>This code converts an arithmetic infix expression (like "A + B") into postfix (Reverse Polish Notation) and prefix (Polish Notation) expressions using a stack data structure. Here’s a detailed breakdown:
+
+            ### Structure of the Code
+            
+            1. *Includes and Definitions*:
+               - Standard C libraries are included for input/output, string manipulation, and character classification.
+               - A constant MAX is defined to set the maximum size of the expression and the stack.
+            
+            2. **Stack Structure (CharStack):
+               - This structure is defined to hold characters, mainly operators and parentheses, with a fixed size array of MAX elements.
+               - The top integer keeps track of the current top of the stack, initialized to -1 to indicate an empty stack.
+            
+            3. *Stack Operations*:
+               - These functions manipulate the stack:
+                 - **pushChar**: Adds a character to the stack and increments the top.
+                 - **popChar**: Removes and returns the character at the top of the stack. Returns a null character ('\0') if the stack is empty.
+                 - **peekChar**: Returns the character at the top of the stack without removing it.
+                 - **isEmptyChar**: Checks if the stack is empty by checking if top is -1.
+            
+            4. **Operator Precedence Function (precedence):
+               - This function returns an integer that indicates the precedence of an operator, where higher numbers mean higher precedence:
+                 - + and - have precedence 1.
+                 - * and / have precedence 2.
+                 - ( has precedence 0 (used to control parentheses processing).
+               - Any unrecognized character is assigned precedence -1.
+            
+            5. **Expression Reversal Function (reverse):
+               - This function reverses a string in place, which is essential for converting an infix expression to prefix notation (Polish Notation).
+            
+            6. **Infix to Postfix Conversion (convertToPostfix):
+               - Converts an infix expression (e.g., "A + B") to postfix notation (e.g., "A B +").
+               - *Process*:
+                 - A CharStack instance is used to store operators temporarily.
+                 - Loop through each character in the infix expression:
+                   - *Operands* (like A, B, 1, etc.): Directly added to postfix along with a space for separation.
+                   - **Left Parenthesis (**: Pushed onto the stack.
+                   - **Right Parenthesis )**: Causes the stack to pop operators until a left parenthesis is encountered (the left parenthesis is discarded).
+                   - *Operators* (+, -, *, /): Popped from the stack and added to postfix if they have higher or equal precedence than the incoming operator. Then, the current operator is pushed onto the stack.
+                 - After the loop, any remaining operators in the stack are popped to postfix.
+               - *Result*: The postfix array holds the postfix expression.
+            
+            7. **Infix to Prefix Conversion (convertToPrefix):
+               - Converts an infix expression to prefix notation by first reversing the infix expression.
+               - *Process*:
+                 - The infix expression is reversed so that operators are processed in the correct order.
+                 - The same stack-based logic as in convertToPostfix is applied, with minor adjustments to handle reversed parentheses.
+                   - *Operands*: Added to prefix.
+                   - **Left Parenthesis ( and Right Parenthesis )**: Their roles are swapped because of the reversed order.
+                   - *Operators*: Checked for precedence and pushed or popped in a similar way as in postfix conversion.
+                 - After processing all characters, any remaining operators in the stack are popped to prefix.
+                 - The final prefix expression is then reversed to correct its order.
+               - *Result*: The prefix array contains the prefix expression.
+            
+            8. *Main Function*:
+               - *Input*: An arithmetic infix expression is taken from the user.
+               - *Conversion*: convertToPostfix and convertToPrefix are called to generate both postfix and prefix forms of the expression.
+               - *User Choice and Output*:
+                 - The user is prompted to choose between postfix and prefix outputs.
+                 - Based on the choice, either postfix or prefix is printed.</p>
         
         <h2>The type of data structure used is Stack</h2>
         <h3>Live Demo</h3>
