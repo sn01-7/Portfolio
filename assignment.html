@@ -209,65 +209,89 @@
         </code></pre>
 
         <h2>Code Explanation</h2>
-        <p>This code converts an arithmetic infix expression (like "A + B") into postfix (Reverse Polish Notation) and prefix (Polish Notation) expressions using a stack data structure. Here’s a detailed breakdown:
-
-            ### Structure of the Code
-            
-            1. *Includes and Definitions*:
-               - Standard C libraries are included for input/output, string manipulation, and character classification.
-               - A constant MAX is defined to set the maximum size of the expression and the stack.
-            
-            2. **Stack Structure (CharStack):
-               - This structure is defined to hold characters, mainly operators and parentheses, with a fixed size array of MAX elements.
-               - The top integer keeps track of the current top of the stack, initialized to -1 to indicate an empty stack.
-            
-            3. *Stack Operations*:
-               - These functions manipulate the stack:
-                 - **pushChar**: Adds a character to the stack and increments the top.
-                 - **popChar**: Removes and returns the character at the top of the stack. Returns a null character ('\0') if the stack is empty.
-                 - **peekChar**: Returns the character at the top of the stack without removing it.
-                 - **isEmptyChar**: Checks if the stack is empty by checking if top is -1.
-            
-            4. **Operator Precedence Function (precedence):
-               - This function returns an integer that indicates the precedence of an operator, where higher numbers mean higher precedence:
-                 - + and - have precedence 1.
-                 - * and / have precedence 2.
-                 - ( has precedence 0 (used to control parentheses processing).
-               - Any unrecognized character is assigned precedence -1.
-            
-            5. **Expression Reversal Function (reverse):
-               - This function reverses a string in place, which is essential for converting an infix expression to prefix notation (Polish Notation).
-            
-            6. **Infix to Postfix Conversion (convertToPostfix):
-               - Converts an infix expression (e.g., "A + B") to postfix notation (e.g., "A B +").
-               - *Process*:
-                 - A CharStack instance is used to store operators temporarily.
-                 - Loop through each character in the infix expression:
-                   - *Operands* (like A, B, 1, etc.): Directly added to postfix along with a space for separation.
-                   - **Left Parenthesis (**: Pushed onto the stack.
-                   - **Right Parenthesis )**: Causes the stack to pop operators until a left parenthesis is encountered (the left parenthesis is discarded).
-                   - *Operators* (+, -, *, /): Popped from the stack and added to postfix if they have higher or equal precedence than the incoming operator. Then, the current operator is pushed onto the stack.
-                 - After the loop, any remaining operators in the stack are popped to postfix.
-               - *Result*: The postfix array holds the postfix expression.
-            
-            7. **Infix to Prefix Conversion (convertToPrefix):
-               - Converts an infix expression to prefix notation by first reversing the infix expression.
-               - *Process*:
-                 - The infix expression is reversed so that operators are processed in the correct order.
-                 - The same stack-based logic as in convertToPostfix is applied, with minor adjustments to handle reversed parentheses.
-                   - *Operands*: Added to prefix.
-                   - **Left Parenthesis ( and Right Parenthesis )**: Their roles are swapped because of the reversed order.
-                   - *Operators*: Checked for precedence and pushed or popped in a similar way as in postfix conversion.
-                 - After processing all characters, any remaining operators in the stack are popped to prefix.
-                 - The final prefix expression is then reversed to correct its order.
-               - *Result*: The prefix array contains the prefix expression.
-            
-            8. *Main Function*:
-               - *Input*: An arithmetic infix expression is taken from the user.
-               - *Conversion*: convertToPostfix and convertToPrefix are called to generate both postfix and prefix forms of the expression.
-               - *User Choice and Output*:
-                 - The user is prompted to choose between postfix and prefix outputs.
-                 - Based on the choice, either postfix or prefix is printed.</p>
+        <p>This code converts an arithmetic infix expression (like "A + B") into postfix (Reverse Polish Notation) and prefix (Polish Notation) expressions using a stack data structure. Here’s a detailed breakdown:</p>
+        
+        <h3>Structure of the Code</h3>
+        
+        <h4>1. Includes and Definitions</h4>
+        <ul>
+            <li>Standard C libraries are included for input/output, string manipulation, and character classification.</li>
+            <li>A constant <code>MAX</code> is defined to set the maximum size of the expression and the stack.</li>
+        </ul>
+        
+        <h4>2. Stack Structure (<code>CharStack</code>)</h4>
+        <ul>
+            <li>This structure holds characters, mainly operators and parentheses, with a fixed-size array of <code>MAX</code> elements.</li>
+            <li>The <code>top</code> integer keeps track of the current top of the stack, initialized to <code>-1</code> to indicate an empty stack.</li>
+        </ul>
+        
+        <h4>3. Stack Operations</h4>
+        <ul>
+            <li><code>pushChar</code>: Adds a character to the stack and increments the <code>top</code>.</li>
+            <li><code>popChar</code>: Removes and returns the character at the top of the stack. Returns a null character (<code>'\0'</code>) if the stack is empty.</li>
+            <li><code>peekChar</code>: Returns the character at the top of the stack without removing it.</li>
+            <li><code>isEmptyChar</code>: Checks if the stack is empty by checking if <code>top</code> is -1.</li>
+        </ul>
+        
+        <h4>4. Operator Precedence Function (<code>precedence</code>)</h4>
+        <ul>
+            <li>Returns an integer indicating operator precedence, where higher numbers mean higher precedence:</li>
+            <ul>
+                <li><code>+</code> and <code>-</code> have precedence 1.</li>
+                <li><code>*</code> and <code>/</code> have precedence 2.</li>
+                <li><code>(</code> has precedence 0 (used to control parentheses processing).</li>
+            </ul>
+            <li>Any unrecognized character is assigned precedence <code>-1</code>.</li>
+        </ul>
+        
+        <h4>5. Expression Reversal Function (<code>reverse</code>)</h4>
+        <ul>
+            <li>Reverses a string in place, which is essential for converting an infix expression to prefix notation (Polish Notation).</li>
+        </ul>
+        
+        <h4>6. Infix to Postfix Conversion (<code>convertToPostfix</code>)</h4>
+        <p>Converts an infix expression (e.g., "A + B") to postfix notation (e.g., "A B +").</p>
+        <ul>
+            <li>A <code>CharStack</code> instance is used to store operators temporarily.</li>
+            <li>Loop through each character in the infix expression:
+                <ul>
+                    <li><strong>Operands</strong> (like A, B, 1, etc.): Directly added to postfix along with a space for separation.</li>
+                    <li><strong>Left Parenthesis</strong> <code>(</code>: Pushed onto the stack.</li>
+                    <li><strong>Right Parenthesis</strong> <code>)</code>: Causes the stack to pop operators until a left parenthesis is encountered (the left parenthesis is discarded).</li>
+                    <li><strong>Operators</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>: Popped from the stack and added to postfix if they have higher or equal precedence than the incoming operator. Then, the current operator is pushed onto the stack.</li>
+                </ul>
+            </li>
+            <li>After the loop, any remaining operators in the stack are popped to postfix.</li>
+        </ul>
+        <p><strong>Result</strong>: The <code>postfix</code> array holds the postfix expression.</p>
+        
+        <h4>7. Infix to Prefix Conversion (<code>convertToPrefix</code>)</h4>
+        <p>Converts an infix expression to prefix notation by first reversing the infix expression.</p>
+        <ul>
+            <li>The infix expression is reversed so that operators are processed in the correct order.</li>
+            <li>The same stack-based logic as in <code>convertToPostfix</code> is applied, with minor adjustments to handle reversed parentheses.
+                <ul>
+                    <li><strong>Operands</strong>: Added to prefix.</li>
+                    <li><strong>Left Parenthesis</strong> <code>(</code> and <strong>Right Parenthesis</strong> <code>)</code>: Their roles are swapped because of the reversed order.</li>
+                    <li><strong>Operators</strong>: Checked for precedence and pushed or popped in a similar way as in postfix conversion.</li>
+                </ul>
+            </li>
+            <li>After processing all characters, any remaining operators in the stack are popped to prefix.</li>
+            <li>The final prefix expression is then reversed to correct its order.</li>
+        </ul>
+        <p><strong>Result</strong>: The <code>prefix</code> array contains the prefix expression.</p>
+        
+        <h4>8. Main Function</h4>
+        <ul>
+            <li><strong>Input</strong>: An arithmetic infix expression is taken from the user.</li>
+            <li><strong>Conversion</strong>: <code>convertToPostfix</code> and <code>convertToPrefix</code> are called to generate both postfix and prefix forms of the expression.</li>
+            <li><strong>User Choice and Output</strong>:
+                <ul>
+                    <li>The user is prompted to choose between postfix and prefix outputs.</li>
+                    <li>Based on the choice, either postfix or prefix is printed.</li>
+                </ul>
+            </li>
+        </ul>        
         
         <h2>The type of data structure used is Stack</h2>
         <h3>Live Demo</h3>
