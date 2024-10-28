@@ -10,10 +10,10 @@ body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(10, 10, 25, 0.9);
     padding: 20px;
     text-align: center;
-    border-bottom: 2px solid #00ff99;
+    border-bottom: 2px solid #9c27b0;
     backdrop-filter: blur(10px);
     animation: header-glow 2s infinite alternate;
 }
@@ -21,13 +21,13 @@ header {
 h1 {
     margin: 0;
     font-size: 2.8em;
-    color: #00ff99;
-    text-shadow: 0px 0px 10px #00ff99, 0px 0px 20px #00ff99;
+    color: #9c27b0;
+    text-shadow: 0px 0px 10px #9c27b0, 0px 0px 20px #00d4ff;
 }
 
 @keyframes header-glow {
-    from { text-shadow: 0 0 8px #00ff99; }
-    to { text-shadow: 0 0 20px #00ff99; }
+    from { text-shadow: 0 0 8px #9c27b0; }
+    to { text-shadow: 0 0 20px #00d4ff; }
 }
 
 nav ul {
@@ -41,32 +41,32 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #00ff99;
+    color: #00d4ff;
     text-decoration: none;
     font-weight: 700;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #ffffff;
-    text-shadow: 0px 0px 8px #00ff99;
+    color: #ff4081;
+    text-shadow: 0px 0px 8px #ff4081;
 }
 
 section {
     padding: 20px;
     margin: 20px auto;
     max-width: 800px;
-    border: 1px solid rgba(0, 255, 153, 0.4);
+    border: 1px solid rgba(156, 39, 176, 0.4);
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.9);
-    box-shadow: 0px 4px 20px rgba(0, 255, 153, 0.1);
+    background: rgba(10, 10, 25, 0.9);
+    box-shadow: 0px 4px 20px rgba(0, 212, 255, 0.2);
     backdrop-filter: blur(5px);
 }
 
 h2 {
-    color: #00ff99;
+    color: #00d4ff;
     font-weight: 700;
-    text-shadow: 0px 0px 5px rgba(0, 255, 153, 0.5);
+    text-shadow: 0px 0px 5px rgba(0, 212, 255, 0.6);
 }
 
 .project, .assignment {
@@ -74,13 +74,13 @@ h2 {
 }
 
 a {
-    color: #00ff99;
+    color: #00d4ff;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 a:hover {
-    color: #ffffff;
-    text-shadow: 0px 0px 5px #00ff99;
+    color: #ff4081;
+    text-shadow: 0px 0px 5px #ff4081;
 }
 
 form {
@@ -91,21 +91,21 @@ form {
 
 label {
     font-weight: 500;
-    color: #00ff99;
+    color: #9c27b0;
 }
 
 input, textarea {
     padding: 12px;
-    border: 1px solid rgba(0, 255, 153, 0.6);
+    border: 1px solid rgba(156, 39, 176, 0.6);
     border-radius: 8px;
-    background-color: rgba(20, 20, 20, 0.9);
+    background-color: rgba(20, 20, 30, 0.9);
     color: #00ff99;
     transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus, textarea:focus {
-    border-color: #00ff99;
-    box-shadow: 0px 0px 10px rgba(0, 255, 153, 0.4);
+    border-color: #00d4ff;
+    box-shadow: 0px 0px 10px rgba(0, 212, 255, 0.4);
     outline: none;
 }
 
@@ -113,7 +113,7 @@ button {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(135deg, #00ff99, #008866);
+    background: linear-gradient(135deg, #00ff99, #9c27b0);
     color: #000;
     font-weight: bold;
     cursor: pointer;
@@ -121,42 +121,42 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(135deg, #008866, #00ff99);
-    box-shadow: 0px 0px 15px rgba(0, 255, 153, 0.4);
+    background: linear-gradient(135deg, #9c27b0, #00ff99);
+    box-shadow: 0px 0px 15px rgba(0, 212, 255, 0.4);
 }
 
 footer {
     text-align: center;
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #ffffff;
+    background-color: rgba(10, 10, 25, 0.9);
+    color: #00d4ff;
     position: relative;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #00ff99;
-    box-shadow: 0px -2px 8px rgba(0, 255, 153, 0.1);
+    border-top: 1px solid #ff4081;
+    box-shadow: 0px -2px 8px rgba(255, 64, 129, 0.2);
 }
 
 #project-details {
     padding: 20px;
     margin: 20px auto;
     max-width: 800px;
-    border: 1px solid rgba(0, 255, 153, 0.4);
+    border: 1px solid rgba(156, 39, 176, 0.4);
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.9);
-    box-shadow: 0px 4px 20px rgba(0, 255, 153, 0.1);
+    background: rgba(10, 10, 25, 0.9);
+    box-shadow: 0px 4px 20px rgba(0, 212, 255, 0.2);
     backdrop-filter: blur(5px);
 }
 
 pre {
-    background-color: rgba(20, 20, 20, 0.9);
+    background-color: rgba(20, 20, 30, 0.9);
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 255, 153, 0.2);
+    box-shadow: 0px 4px 10px rgba(255, 64, 129, 0.2);
     overflow-x: auto;
 }
 
 code {
-    color: #00ff99;
+    color: #00d4ff;
     font-family: 'Courier New', monospace;
 }
